@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import styles from './Button.module.scss';
@@ -29,11 +30,11 @@ function Button({
 
     // Remove event listeners when button is disabled
     if (disabled) {
-        Object.keys(props).forEach(key => {
+        Object.keys(props).forEach((key) => {
             if (key.startsWith('on') && typeof props[key] === 'function') {
                 delete props[key];
             }
-        })
+        });
     }
 
     if (to) {
@@ -44,8 +45,8 @@ function Button({
         Component = 'a';
     }
 
-    const classes = cx('wrapper', { [className]: className, primary, outline, text, rounded, disabled, small, large, });
-    
+    const classes = cx('wrapper', { [className]: className, primary, outline, text, rounded, disabled, small, large });
+
     return (
         <Component className={classes} {...props}>
             {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
@@ -54,5 +55,9 @@ function Button({
         </Component>
     );
 }
+
+Button.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
 export default Button;

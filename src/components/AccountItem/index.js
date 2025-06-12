@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './AccountItem.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,11 +12,7 @@ const cx = classNames.bind(styles);
 function AccountItem({ data }) {
     return (
         <Link to={`/user/${data.nickname}`} className={cx('wrapper')}>
-            <Image
-                className={cx('avatar')}
-                src={data.avatar}
-                alt={data.full_name}
-            ></Image>
+            <Image className={cx('avatar')} src={data.avatar} alt={data.full_name}></Image>
             <div className={cx('info')}>
                 <h4 className={cx('name')}>
                     <span>{data.full_name}</span>
@@ -26,5 +23,9 @@ function AccountItem({ data }) {
         </Link>
     );
 }
+
+AccountItem.propTypes = {
+    data: PropTypes.object,
+};
 
 export default AccountItem;
